@@ -1,10 +1,9 @@
-from random import random
+import random
 
 
-def run():
+def guess(x):
 
     name = input(f"First, what's your name? hehe: ")
-
     while name.isnumeric():
 
         if name.isnumeric():
@@ -15,12 +14,12 @@ def run():
 
         print(f" Welcome, {name} ".center(50, '*'))
 
-        print(f"In this game, you will guess the secret number (from 0 to 100). If you wins, you can "
+        print(f"In this game, you will guess the secret number . If you wins, you can "
               f"exit, else, you can't. ): \nOk, try it! ")
 
-        guess = int(input(f"Enter an attempt: "))
+        real = random.randint(1, x)
 
-        real = int(random() * 100)
+        guess = int(input(f"Enter a number (0 - {x}): "))
 
         print(real)
 
@@ -34,8 +33,35 @@ def run():
                 guess = int(input(f"You can: "))
         else:
 
-            print('You wins, hehe. See u!'.center(50, '*'))
+            print('You wins, hehe.'.center(50, '*'))
+
+
+def computer_guess(x):
+    print(f"Now, it's your turn :). You must tell me if i'm right or not. ")
+
+    low = 1
+    high = x
+    comment = ''
+
+
+
+    while comment != 'C':
+
+        guess = random.randint(low, high)
+
+        comment = input(f"Is {guess} too low (L), too high (H) or is correct (C)? D: ")
+        if comment == 'L':
+            guess = random.randint(guess, high)
+
+        elif comment == 'H':
+            guess = random.randint(low, guess)
+
+
+    else:
+
+        print('Yey, thanks for playing with me')
+
 
 
 if __name__ == '__main__':
-    run()
+    computer_guess(500)
